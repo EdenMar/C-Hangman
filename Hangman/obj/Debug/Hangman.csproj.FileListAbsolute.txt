@@ -1,0 +1,7 @@
+C:\Users\Eden\Documents\SharpDevelop Projects\Hangman\Hangman\obj\Debug\Hangman.csprojResolveAssemblyReference.cache
+C:\Users\Eden\Documents\SharpDevelop Projects\Hangman\Hangman\bin\Debug\Hangman.exe.config
+C:\Users\Eden\Documents\SharpDevelop Projects\Hangman\Hangman\bin\Debug\Hangman.exe
+C:\Users\Eden\Documents\SharpDevelop Projects\Hangman\Hangman\bin\Debug\Hangman.pdb
+C:\Users\Eden\Documents\SharpDevelop Projects\Hangman\Hangman\bin\Debug\nunit.framework.dll
+C:\Users\Eden\Documents\SharpDevelop Projects\Hangman\Hangman\obj\Debug\Hangman.exe
+C:\Users\Eden\Documents\SharpDevelop Projects\Hangman\Hangman\obj\Debug\Hangman.pdb
