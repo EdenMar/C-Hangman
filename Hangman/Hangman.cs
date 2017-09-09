@@ -17,13 +17,15 @@ namespace Hangman
 		private int limit = 7;
 		private int guesses;
 		private String secretWord;
-		private StringBuilder currentWord = new StringBuilder();
+		private String currentWord;
+		private HashSet<char> hash = new HashSet<char>();
 			
 		public Gameboard(String word){
 			guesses = 0;
-			this.secretWord = word;
-			currentWord.Append(Convert.ToChar("_"), secretWord.Length);
-			
+			secretWord = word;
+			StringBuilder cw = new StringBuilder();
+			cw.Append(Convert.ToChar("_"), secretWord.Length);
+			currentWord = cw.ToString();
 		}
 		
 		public void printGameboard(){
@@ -37,8 +39,32 @@ namespace Hangman
 			return guesses < limit;
 		}
 		
+		//take a char and replace any hits
 		public void tryLetter(char c){
-			
+			if (hash.Contains(c)){
+				;
+			}else{
+				//add the char
+				hash.Add(c);
+				//replace the char
+				var sb = new StringBuilder();
+				for (int i = 0; i < secretWord.Length; i++){
+					if (secretWord[i] == c){
+						sb.Append(c);
+					}else{
+						sb.Append(currentWord[i]);
+					}
+				}
+				currentWord = sb.ToString();
+			}
+		}
+		
+		public String getSecretWord(){
+			return secretWord;
+		}
+		
+		public String getCurrentWord(){
+			return currentWord;
 		}
 		
 		public int getSecretWordLength(){

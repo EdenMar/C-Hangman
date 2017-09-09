@@ -27,7 +27,8 @@ namespace HangmanTest
         [Test]
         public void Gameboard_TestTryLetter(){
         	Gameboard g = new Gameboard("banana");
-        	Assert.Fail();
+        	g.tryLetter('a');
+        	Assert.AreEqual(g.getCurrentWord(), "_a_a_a");
         }
     }
 }
