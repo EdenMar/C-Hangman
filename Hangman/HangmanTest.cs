@@ -27,8 +27,26 @@ namespace HangmanTest
         [Test]
         public void Gameboard_TestTryLetter(){
         	Gameboard g = new Gameboard("banana");
+        	Assert.AreEqual(g.getGuessesLeft(), 7);
         	g.tryLetter('a');
-        	Assert.AreEqual(g.getCurrentWord(), "_a_a_a");
+        	Assert.AreEqual(g.getGuessesLeft(), 6);
+        	g.tryLetter('a');
+        	Assert.AreEqual(g.getGuessesLeft(), 6);
+        	g.tryLetter('b');
+        	Assert.AreEqual(g.getCurrentWord(), "ba_a_a");
+        	Assert.AreEqual(g.getGuessesLeft(), 6);
         }
+        
+        [Test]
+        public void Gameboard_TestHasWon(){
+        	Gameboard g = new Gameboard("asdf");
+        	g.tryLetter('a');
+        	g.tryLetter('s');
+        	g.tryLetter('d');
+        	g.tryLetter('f');
+        	Assert.AreEqual(g.hasWon(), true);
+        }
+        
+
     }
 }

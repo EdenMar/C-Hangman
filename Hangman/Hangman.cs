@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Hangman
 {
@@ -29,31 +30,48 @@ namespace Hangman
 		}
 		
 		public void printGameboard(){
+			Console.WriteLine("You have {0} guesses left.", this.getGuessesLeft());
 			Console.Write("The word length is ");
 			Console.Write(this.getSecretWordLength());
 			Console.WriteLine(" letters long.");
 			Console.WriteLine(currentWord.ToString());
 		}
 		
+		public int getGuessesLeft(){
+			return limit-guesses;
+		}
+		
 		public bool hasGuessesLeft(){
 			return guesses < limit;
+		}
+		
+		public bool hasWon(){
+			return secretWord.Equals(currentWord);
 		}
 		
 		//take a char and replace any hits
 		public void tryLetter(char c){
 			if (hash.Contains(c)){
-				;
+				Console.WriteLine("Sorry, that's already been guess; try another letter.");
+				return;
 			}else{
-				//add the char
+				//flag to see if proposed letter in secretWord
+				bool isLetter = false;
+				//add the char to hash
 				hash.Add(c);
 				//replace the char
 				var sb = new StringBuilder();
 				for (int i = 0; i < secretWord.Length; i++){
 					if (secretWord[i] == c){
 						sb.Append(c);
+						isLetter = true;
 					}else{
 						sb.Append(currentWord[i]);
 					}
+				}
+				//if not a letter or a vowel, increment
+				if (!isLetter || "aeiou".Contains(c)){
+					guesses++;
 				}
 				currentWord = sb.ToString();
 			}
@@ -90,12 +108,22 @@ namespace Hangman
 			int val = r.Next(6);
 			String secret = wordList[val];
 			Gameboard game = new Gameboard(secret);
-			Console.WriteLine("You have 7 guesses left.");
-			game.printGameboard();
-			while (game.hasGuessesLeft()){
+
+			
+			while (game.hasGuessesLeft() && !game.hasWon()){
+				game.printGameboard();
 				String s = Console.ReadLine();
 				char c = s[0];
+				game.tryLetter(c);
+
 			}
+	
+			if (game.hasWon()){
+				Console.WriteLine("You win!");
+			}else{
+				Console.WriteLine("Out of guesses");
+			}
+			
 			Console.ReadKey();
 		}
 	}

@@ -1,1 +1,1 @@
-Just a little C# game
+Hangman in C# using TDD and SharpDevelop
